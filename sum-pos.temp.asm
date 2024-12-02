@@ -1,4 +1,4 @@
-include irvine32.inc
+INCLUDE c:\Users\Lenovo\.vscode\extensions\istareatscreens.masm-runner-0.4.5\native\irvine\Irvine32.inc
 
 .data
 str1 db "The Sum of positive elements is: ",0

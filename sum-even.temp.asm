@@ -1,9 +1,9 @@
-include irvine32.inc
+INCLUDE c:\Users\Lenovo\.vscode\extensions\istareatscreens.masm-runner-0.4.5\native\irvine\Irvine32.inc
 
 .data
 array DWORD 3, 6, 1, 10, 40, 4
-str1 db "The sum of all odd numbers is: ", 0
-str2 db "The total number of odd numbers is: ", 0
+str1 db "The sum of all even numbers is: ", 0
+str2 db "The total number of even numbers is: ", 0
 sum DWORD 0
 count DWORD 0
 
@@ -15,7 +15,7 @@ main proc
 
 next:
     test DWORD PTR [esi], 1       ; Check if the number is odd (LSB = 1)
-    jz skip                      ; If even, skip the addition
+    jnz skip                      ; If odd, skip the addition
     mov eax, sum                  
     add eax, [esi]                
     mov sum, eax                  
@@ -26,12 +26,20 @@ skip:
     add esi, TYPE array           
     loop next                     
 
-    ; Display the sum of odd numbers
+    ; Display the sum of even numbers
     mov edx, OFFSET str1
     call writestring
     mov eax, sum
     call WriteInt
- call crlf
- exit
- main endp
- end main
+    call crlf
+
+    ; Display the total count of even numbers
+    mov edx, OFFSET str2
+    call writestring
+    mov eax, count
+    call WriteInt
+    call crlf
+
+    exit
+main endp
+end main
